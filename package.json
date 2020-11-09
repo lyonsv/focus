@@ -8,8 +8,13 @@
     "start": "next start"
   },
   "dependencies": {
+    "apisauce": "^2.0.0",
     "next": "10.0.1",
+    "polished": "^4.0.3",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-spinners": "^0.9.0",
+    "react-toastify": "^6.0.9",
+    "styled-components": "^5.2.0"
   }
 }
