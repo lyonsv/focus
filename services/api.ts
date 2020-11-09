@@ -1,4 +1,4 @@
-import {create} from 'apisauce';
+import { create } from 'apisauce'
 
 const baseApi = create({
   baseURL: 'https://built.ie',
@@ -9,12 +9,12 @@ const baseApi = create({
     'Access-Control-Allow-Origin': '*',
     'X-Permitted-Cross-Domain-Policies': 'none',
   },
-});
+})
 
 const createApi = () => {
-  return baseApi;
-};
+  return baseApi
+}
 
-const api = createApi();
+const api = createApi()
 
-export default api;
+export default api
