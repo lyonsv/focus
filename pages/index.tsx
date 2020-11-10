@@ -1,14 +1,13 @@
-import Head from 'next/head';
+import React from 'react'
+import Layout from '../layouts/Base'
+import { H1 } from '../styles/typography'
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
-    <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-    </div>
-  );
-};
+    <Layout>
+      <H1>Hello</H1>
+    </Layout>
+  )
+}
 
-export default Home;
+export default Home

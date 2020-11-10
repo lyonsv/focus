@@ -2,8 +2,8 @@
  *  * Global styles, including normalize.css
  *   */
 
-import {createGlobalStyle} from 'styled-components';
-import {accent} from './colors';
+import { createGlobalStyle } from 'styled-components'
+import { accent } from './colors'
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -63,6 +63,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   ::selection { background: #BA00016E; }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle
