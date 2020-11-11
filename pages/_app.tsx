@@ -1,6 +1,7 @@
-const MyApp = ({Component, pageProps}) => {
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <Component {...pageProps} />;
-};
+import { AppProps } from 'next/app'
 
-export default MyApp;
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  return <Component {...pageProps} />
+}
+
+export default MyApp
