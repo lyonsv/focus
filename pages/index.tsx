@@ -1,6 +1,6 @@
 import React from 'react'
-import Layout from '../layouts/Base'
-import { H1 } from '../styles/typography'
+import Layout from 'layouts/Base'
+import { H1 } from 'styles/typography'
 
 const Home: React.FC = () => {
   return (

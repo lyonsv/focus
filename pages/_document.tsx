@@ -7,7 +7,7 @@ import Document, {
   DocumentContext,
 } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
-import { dark } from '../styles/colors'
+import { dark } from 'styles/colors'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
