@@ -12,11 +12,6 @@ export const xLightGray = gray1
 export const light = white
 export const xLight = gray1
 export const dark = black
-export const primary = blue
 export const accent = blue
 export const lightBorder = `1px solid ${lightGray}`
 export const featured = '#E95645'
-export const linearGradient =
-  'linear-gradient(-90deg, rgba(0,0,0,0) 20%, rgba(0,0,0, 1))'
-export const linearGradientMobile =
-  'linear-gradient(-90deg, rgba(0,0,0,0.5) 20%, rgba(0,0,0, 1))'

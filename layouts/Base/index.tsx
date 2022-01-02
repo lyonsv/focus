@@ -1,6 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
+import { ThemeProvider } from 'styled-components'
 import GlobalStyle from 'styles/global'
+import theme from 'styles/theme'
 
 type PageType = {
   title?: string
@@ -13,7 +15,7 @@ const Page: React.FC<PageType> = ({
   description,
   children,
 }: PageType) => (
-  <>
+  <ThemeProvider theme={theme}>
     <GlobalStyle />
     <Head>
       <title>{title}</title>
@@ -22,7 +24,7 @@ const Page: React.FC<PageType> = ({
       <link rel='icon' href='/favicon.ico' />
     </Head>
     {children}
-  </>
+  </ThemeProvider>
 )
 
 Page.defaultProps = {

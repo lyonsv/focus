@@ -5,7 +5,9 @@ import { H1 } from 'styles/typography'
 const Home: React.FC = () => {
   return (
     <Layout>
-      <H1>Hello</H1>
+      <H1 light data-testid='homepage-title'>
+        Hello
+      </H1>
     </Layout>
   )
 }
