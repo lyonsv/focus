@@ -17,7 +17,7 @@
     "test:debug": "NODE_ENV=test node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch --setupFiles dotenv/config",
     "test:e2e": "is-ci \"test:e2e:run\" \"test:e2e:dev\"",
     "test:e2e:dev": "NODE_ENV=development start-server-and-test dev http://localhost:3000 cy:open",
-    "test:e2e:run": "NODE_ENV=test start-server-and-test start:app http://localhost:3000 cy:run",
+    "test:e2e:run": "NODE_ENV=test start-server-and-test start http://localhost:3000 cy:run",
     "test:watch": "NODE_ENV=test jest --runInBand --watch --setupFiles dotenv/config"
   },
   "dependencies": {

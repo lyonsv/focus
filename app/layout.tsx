@@ -1,10 +1,7 @@
 import React from 'react'
-import { Inter } from 'next/font/google'
 import StyledComponentsRegistry from './lib/registry'
 import StyledProvider from '../components/StyledProvider'
 import { dark } from '../styles/colors'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Base',
