@@ -1,12 +1,11 @@
 import React from 'react'
-import { screen, render } from '@testing-library/react'
-import HomePage from '../../pages/index'
+import { render, screen } from '@testing-library/react'
+import HomePage from '../../app/page'
 
-describe('The homepage', () => {
-  test('should render', () => {
+describe('HomePage', () => {
+  it('renders without crashing', () => {
     render(<HomePage />)
     const title = screen.getByTestId('homepage-title')
-
-    expect(title).toBeDefined()
+    expect(title).toBeInTheDocument()
   })
 })

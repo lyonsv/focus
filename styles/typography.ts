@@ -17,37 +17,51 @@ const headerStyles = css<Heading>`
     props.light ? props.theme.colors.light : props.theme.colors.base};
 `
 
-const H1 = styled.h1<Heading>`
+const H1 = styled.h1.withConfig({
+  shouldForwardProp: (prop) => !['light', 'typeface', 'accent', 'lowercase'].includes(prop),
+})<Heading>`
   font-size: ${props => props.theme.fontScale.h1};
   ${headerStyles};
 `
 
-const H2 = styled.h2<Heading>`
+const H2 = styled.h2.withConfig({
+  shouldForwardProp: (prop) => !['light', 'typeface', 'accent', 'lowercase'].includes(prop),
+})<Heading>`
   font-size: ${props => props.theme.fontScale.h2};
   ${headerStyles};
 `
 
-const H3 = styled.h3<Heading>`
+const H3 = styled.h3.withConfig({
+  shouldForwardProp: (prop) => !['light', 'typeface', 'accent', 'lowercase'].includes(prop),
+})<Heading>`
   font-size: ${props => props.theme.fontScale.h3};
   ${headerStyles};
 `
 
-const H4 = styled.h4<Heading>`
+const H4 = styled.h4.withConfig({
+  shouldForwardProp: (prop) => !['light', 'typeface', 'accent', 'lowercase'].includes(prop),
+})<Heading>`
   font-size: ${props => props.theme.fontScale.h4};
   ${headerStyles};
 `
 
-const H5 = styled.h5<Heading>`
+const H5 = styled.h5.withConfig({
+  shouldForwardProp: (prop) => !['light', 'typeface', 'accent', 'lowercase'].includes(prop),
+})<Heading>`
   font-size: ${props => props.theme.fontScale.h5};
   ${headerStyles};
 `
 
-const H6 = styled.h6<Heading>`
+const H6 = styled.h6.withConfig({
+  shouldForwardProp: (prop) => !['light', 'typeface', 'accent', 'lowercase'].includes(prop),
+})<Heading>`
   font-size: ${props => props.theme.fontScale.h6};
   ${headerStyles};
 `
 
-const P = styled.p<Heading>`
+const P = styled.p.withConfig({
+  shouldForwardProp: (prop) => !['light', 'typeface', 'accent', 'lowercase'].includes(prop),
+})<Heading>`
   font-size: ${props => props.theme.fontScale.base};
   line-height: 1.5em;
   font-family: ${baseFont};
