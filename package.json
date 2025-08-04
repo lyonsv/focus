@@ -22,13 +22,13 @@
   },
   "dependencies": {
     "apisauce": "^3.0.1",
-    "next": "^15.2.3",
+    "next": "^15.4.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-is": "^18.3.1",
     "react-spinners": "^0.13.8",
     "react-toastify": "^10.0.5",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "@testing-library/cypress": "^10.0.1",
