@@ -28,30 +28,105 @@ const getDefaultUser = (): User => ({
   isDefault: true
 })
 
+// Check if there's old hardcoded data in localStorage
+const checkForOldData = (): boolean => {
+  if (typeof window === 'undefined') return false
+  
+  // Check for old wheel data
+  const hasWheelData = localStorage.getItem('wheelOfLifeWheels_vincent') || 
+                       localStorage.getItem('wheelOfLifeWheels_aoife')
+  
+  // Check for old timetable data
+  const hasTimetableData = localStorage.getItem('weekTimetableSchedule_vincent') || 
+                           localStorage.getItem('weekTimetableSchedule_aoife')
+  
+  return !!(hasWheelData || hasTimetableData)
+}
+
+// Migrate old hardcoded data to new user system
+const migrateOldData = (): User[] => {
+  const users: User[] = []
+  
+  // Check for Vincent's data
+  const hasVincentData = localStorage.getItem('wheelOfLifeWheels_vincent') || 
+                         localStorage.getItem('weekTimetableSchedule_vincent')
+  
+  // Check for Aoife's data
+  const hasAoifeData = localStorage.getItem('wheelOfLifeWheels_aoife') || 
+                       localStorage.getItem('weekTimetableSchedule_aoife')
+  
+  if (hasVincentData) {
+    users.push({
+      id: 'vincent-migrated',
+      name: 'Vincent'
+    })
+  }
+  
+  if (hasAoifeData) {
+    users.push({
+      id: 'aoife-migrated',
+      name: 'Aoife'
+    })
+  }
+  
+  // If no old data found, create default user
+  if (users.length === 0) {
+    users.push(getDefaultUser())
+  }
+  
+  return users
+}
+
 export function UserProvider({ children }: { children: ReactNode }) {
   const [users, setUsers] = useState<User[]>([])
   const [currentUser, setCurrentUser] = useState<User | null>(null)
 
   // Load users from localStorage on mount
   useEffect(() => {
+    console.log('Loading users from localStorage...')
     const storedUsers = localStorage.getItem(STORAGE_KEY)
+    console.log('Stored users:', storedUsers)
+    
     if (storedUsers) {
-      const parsedUsers = JSON.parse(storedUsers)
-      setUsers(parsedUsers)
-      
-      // Set current user to first user or default
-      if (parsedUsers.length > 0) {
-        setCurrentUser(parsedUsers[0])
-      } else {
+      try {
+        const parsedUsers = JSON.parse(storedUsers)
+        console.log('Parsed users:', parsedUsers)
+        if (Array.isArray(parsedUsers) && parsedUsers.length > 0) {
+          setUsers(parsedUsers)
+          setCurrentUser(parsedUsers[0])
+          console.log('Set users:', parsedUsers)
+        } else {
+          // Invalid data or empty array, initialize with default
+          const defaultUser = getDefaultUser()
+          setUsers([defaultUser])
+          setCurrentUser(defaultUser)
+          console.log('Set default user:', defaultUser)
+        }
+      } catch (error) {
+        console.error('Error parsing stored users:', error)
+        // Initialize with default user on error
         const defaultUser = getDefaultUser()
         setUsers([defaultUser])
         setCurrentUser(defaultUser)
+        console.log('Set default user after error:', defaultUser)
       }
     } else {
-      // Initialize with default user
-      const defaultUser = getDefaultUser()
-      setUsers([defaultUser])
-      setCurrentUser(defaultUser)
+      // Check for old hardcoded data and migrate
+      const hasOldData = checkForOldData()
+      console.log('Has old data:', hasOldData)
+      if (hasOldData) {
+        // Migrate old data to new user system
+        const migratedUsers = migrateOldData()
+        setUsers(migratedUsers)
+        setCurrentUser(migratedUsers[0])
+        console.log('Migrated users:', migratedUsers)
+      } else {
+        // Initialize with default user
+        const defaultUser = getDefaultUser()
+        setUsers([defaultUser])
+        setCurrentUser(defaultUser)
+        console.log('Set default user (no old data):', defaultUser)
+      }
     }
   }, [])
 
@@ -67,12 +142,14 @@ export function UserProvider({ children }: { children: ReactNode }) {
       id: `user-${Date.now()}`,
       name: name.trim() || 'Unnamed User'
     }
-    setUsers(prev => [...prev, newUser])
-    
-    // Set as current user if it's the first user
-    if (users.length === 0) {
-      setCurrentUser(newUser)
-    }
+    setUsers(prev => {
+      const updatedUsers = [...prev, newUser]
+      // Set as current user if it's the first user
+      if (prev.length === 0) {
+        setCurrentUser(newUser)
+      }
+      return updatedUsers
+    })
   }
 
   const removeUser = (userId: string) => {

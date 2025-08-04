@@ -11,6 +11,8 @@ export default function SettingsPage() {
   const [editingUser, setEditingUser] = useState<string | null>(null)
   const [editingName, setEditingName] = useState('')
 
+  console.log('SettingsPage render - users:', users, 'currentUser:', currentUser, 'newUserName:', newUserName)
+
   const handleAddUser = () => {
     if (newUserName.trim()) {
       addUser(newUserName)
@@ -124,7 +126,12 @@ export default function SettingsPage() {
               color: '#ffffff',
               fontSize: '1rem'
             }}
-            onKeyPress={(e) => e.key === 'Enter' && handleAddUser()}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault()
+                handleAddUser()
+              }
+            }}
           />
           <button
             onClick={handleAddUser}
@@ -144,7 +151,7 @@ export default function SettingsPage() {
             }}
           >
             <Plus size={16} />
-            Add User
+            Add User ({newUserName.trim() ? 'enabled' : 'disabled'})
           </button>
         </div>
 

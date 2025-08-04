@@ -49,7 +49,9 @@ export const Th = styled.th`
   }
 `
 
-export const Td = styled.td<{ isFocused?: boolean; activityColor?: string }>`
+export const Td = styled.td.withConfig({
+  shouldForwardProp: (prop) => prop !== 'isFocused' && prop !== 'activityColor'
+})<{ isFocused?: boolean; activityColor?: string }>`
   border: 1px solid #B7B7B7;
   height: 2rem;
   transition: background-color 0.2s;
