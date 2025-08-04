@@ -1,0 +1,75 @@
+# Cursor Rules for Focus Project
+
+## Package Manager
+- Always use `yarn` instead of `npm` for package management
+- Use `yarn add` for installing dependencies
+- Use `yarn add -D` for installing dev dependencies
+- Use `yarn remove` for removing packages
+- Use `yarn` for running scripts (e.g., `yarn dev`, `yarn build`, `yarn test`)
+
+## Project Structure
+- This is a Next.js 15 project with TypeScript
+- Uses styled-components for styling
+- Follows the app directory structure (Next.js 13+)
+- Components are in the `components/` directory
+- Pages are in the `app/` directory
+- Styles are in the `styles/` directory
+- Tests are in the `__tests__/` directory
+
+## Code Style & Conventions
+- Use TypeScript for all new files (.ts, .tsx)
+- Follow the existing ESLint configuration (Airbnb + TypeScript)
+- Use styled-components for component styling
+- Follow the existing file naming conventions (kebab-case for directories, PascalCase for components)
+- Use absolute imports from the root directory (baseUrl: ".")
+
+## Testing
+- Use Jest for unit tests
+- Use Cypress for E2E tests
+- Use React Testing Library for component tests
+- Test files should be in `__tests__/` directory
+- Follow the existing test naming conventions
+
+## Styling
+- Use styled-components for component styling
+- Follow the existing theme structure in `styles/`
+- Use the existing color palette and typography from `styles/`
+- Prefer styled-components over CSS modules or inline styles
+
+## File Organization
+- Keep components small and focused
+- Use index.ts files for clean exports
+- Group related components in subdirectories
+- Follow the existing pattern of separating styles into `.styles.ts` files
+
+## Dependencies
+- Prefer existing dependencies over adding new ones
+- When adding new dependencies, consider if they're already available in the project
+- Use TypeScript types for all dependencies when available
+
+## Development Workflow
+- Use `yarn dev` for development server
+- Use `yarn build` for production builds
+- Use `yarn test` for running tests
+- Use `yarn lint` for linting and auto-fixing
+- Use `yarn cy:open` for Cypress E2E testing
+
+## Import/Export Patterns
+- Use named exports for components
+- Use default exports sparingly
+- Group imports: React, third-party libraries, local components, types
+- Use absolute imports from the root directory
+
+## TypeScript
+- Use strict TypeScript settings (already configured)
+- Define proper types for all props and state
+- Use interfaces for component props
+- Avoid `any` type - use proper typing instead
+- Use the existing TypeScript configuration
+
+## Next.js Specific
+- Use the app directory structure
+- Use Next.js built-in features when possible
+- Follow Next.js 15 conventions
+- Use proper metadata and SEO patterns
+- Leverage Next.js performance optimizations 

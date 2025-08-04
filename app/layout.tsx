@@ -1,6 +1,8 @@
 import React from 'react'
 import StyledComponentsRegistry from './lib/registry'
 import StyledProvider from '../components/StyledProvider'
+import TopNavigation from '../components/TopNavigation'
+import { UserProvider } from './contexts/UserContext'
 import { dark } from '../styles/colors'
 
 export const metadata = {
@@ -14,7 +16,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <StyledComponentsRegistry>
           <StyledProvider>
-            {children}
+            <UserProvider>
+              <TopNavigation />
+              {children}
+            </UserProvider>
           </StyledProvider>
         </StyledComponentsRegistry>
       </body>

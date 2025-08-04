@@ -1,18 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Focus - Personal Productivity App
+
+A Next.js application for personal productivity tracking with multiple user support.
+
+## Features
+
+- **Wheel of Life**: Track life balance across different categories
+- **Weekly Timetable**: Plan and schedule your week
+- **Multi-User Support**: Add, edit, and switch between different users
+- **Persistent Storage**: All data is saved locally in your browser
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## User Management
+
+The app now supports multiple users with the following features:
+
+- **Default User**: Starts with an "Unnamed User" that you can rename
+- **Add Users**: Create new users with custom names
+- **Edit Users**: Rename existing users
+- **Remove Users**: Delete users (at least one user must remain)
+- **Switch Users**: Easily switch between different user profiles
+- **User-Specific Data**: Each user has their own wheels and timetables
+
+### How to Use
+
+1. Navigate to the **Settings** page from the top navigation
+2. Add new users or edit existing ones
+3. Switch between users to see their individual data
+4. All changes are automatically saved to your browser's local storage
 
 ## Learn More
 

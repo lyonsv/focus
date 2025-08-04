@@ -17,6 +17,7 @@ import {
   ActivityCard,
   EmptyState
 } from './week-timetable.styles'
+import { useUsers } from '../../app/contexts/UserContext'
 
 interface Schedule {
   [day: string]: {
@@ -37,12 +38,16 @@ interface EditingCell {
 }
 
 interface WeekTimetableProps {
-  person: 'vincent' | 'aoife'
+  person?: string
 }
 
 const WeekTimetable = ({ person }: WeekTimetableProps) => {
+  const { currentUser } = useUsers()
   const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
   const totalSlots = 7 * 34 // 7 days × 34 time slots (7am-12am in 30min blocks)
+  
+  // Use currentUser.id as the person identifier for storage
+  const personId = currentUser?.id || 'default'
   
   // Calm color palette for activities - each color is unique
   const activityColors = [
@@ -211,7 +216,7 @@ const WeekTimetable = ({ person }: WeekTimetableProps) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       try {
-        const storageKey = `weekTimetableSchedule_${person}`
+        const storageKey = `weekTimetableSchedule_${personId}`
         const savedSchedule = localStorage.getItem(storageKey)
         if (savedSchedule) {
           let parsedSchedule
@@ -237,19 +242,19 @@ const WeekTimetable = ({ person }: WeekTimetableProps) => {
       }
     }
     setIsLoaded(true)
-  }, [person])
+  }, [personId])
 
   // Save schedule to localStorage whenever it changes
   useEffect(() => {
     if (isLoaded && typeof window !== 'undefined') {
       try {
-        const storageKey = `weekTimetableSchedule_${person}`
+        const storageKey = `weekTimetableSchedule_${personId}`
         localStorage.setItem(storageKey, JSON.stringify(schedule))
       } catch (error) {
         console.error('Error saving schedule to localStorage:', error)
       }
     }
-  }, [schedule, isLoaded, person])
+  }, [schedule, isLoaded, personId])
 
   // Calculate activity statistics
   useEffect(() => {
@@ -588,7 +593,7 @@ const WeekTimetable = ({ person }: WeekTimetableProps) => {
       {/* Timetable */}
       <TimetableContainer>
         <TimetableContent>
-          <H1 style={{ marginBottom: '1.5rem' }}>{person.charAt(0).toUpperCase() + person.slice(1)}'s Weekly Timetable</H1>
+          <H1 style={{ marginBottom: '1.5rem' }}>{currentUser?.name || 'User'}'s Weekly Timetable</H1>
           
           <div style={{ overflowX: 'auto' }}>
             <Table>
